@@ -9,6 +9,11 @@ namespace UtilityRlib.StringHelper.TextStringHelper
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// counts the number of characters that are before a given delimiter.
+        /// </summary>
+        /// <param name="del">the delimiter</param>
+        /// <returns></returns>
         public static int CountCharsToDelimiter(this String str, string[] del)
         {
             int[] o = new int[del.Length];
@@ -19,6 +24,12 @@ namespace UtilityRlib.StringHelper.TextStringHelper
             return CollectionHelper.FindSmallest(o);
         }
 
+        /// <summary>
+        /// Returns a substring between two delimiters.
+        /// </summary>
+        /// <param name="del1">first delimiter</param>
+        /// <param name="del2">second delimiter</param>
+        /// <returns></returns>
         public static string SubstrByDelimiters(this String input, string del1, char del2)
         {
             string str;
@@ -27,22 +38,44 @@ namespace UtilityRlib.StringHelper.TextStringHelper
             return str;
         }
 
+        /// <summary>
+        /// counts the number of characters that are before a given delimiter.
+        /// </summary>
+        /// <param name="del">the delimiter</param>
+        /// <returns></returns>
         public static int CountCharsToDelimiter(this String input, char del)
         {
             return CountCharsToDelimiter(input, del, 0);
         }
 
+        /// <summary>
+        /// counts the number of characters that are before a given delimiter.
+        /// </summary>
+        /// <param name="del">the delimiter</param>
+        /// <returns></returns>
         public static int CountCharsToDelimiter(this String input, string del)
         {
             return CountCharsToDelimiter(input, del, 0);
         }
 
+        /// <summary>
+        /// counts the number of characters that are before a given delimiter starting from a given index.
+        /// </summary>
+        /// <param name="del">The delimiter</param>
+        /// <param name="offset">The index from wich start checking</param>
+        /// <returns></returns>
         public static int CountCharsToDelimiter(this String input, string del, int offset)
         {
             string s = input.Substring(offset);
             return s.IndexOf(del);
         }
 
+        /// <summary>
+        /// counts the number of characters that are before a given delimiter starting from a given index.
+        /// </summary>
+        /// <param name="del">The delimiter</param>
+        /// <param name="offset">The index from wich start checking</param>
+        /// <returns></returns>
         public static int CountCharsToDelimiter(this String input, char del, int offset)
         {
             int count = 0;
@@ -61,12 +94,22 @@ namespace UtilityRlib.StringHelper.TextStringHelper
             return count;
         }
 
+        /// <summary>
+        /// Counts how many times a string is contained inside other
+        /// </summary>
+        /// <param name="find">The string you want to compare</param>
+        /// <returns></returns>
         public static int CountText(this String str, string find)
         {
             string s2 = str.Replace(find, "");
             return (str.Length - s2.Length) / find.Length;
         }
 
+        /// <summary>
+        /// A very loved function that returns an array of all the substrings separated by a given delimiter.
+        /// </summary>
+        /// <param name="del">The delimiter</param>
+        /// <returns></returns>
         public static string[] Explode(this String str, string del)
         {
             int c = CountText(str, del), nextIndex = 0, lastIndex = 0;

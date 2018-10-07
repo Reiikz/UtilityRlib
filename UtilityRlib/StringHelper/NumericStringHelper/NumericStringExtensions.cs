@@ -8,7 +8,40 @@ namespace UtilityRlib.StringHelper.NumericStringHelper
 {
     public static class NumericStringExtensions
     {
+        /// <summary>
+        /// Returns if the string is numeric.
+        /// <para>(It just checks if there another character apart from { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', '.', '-' })</para>
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsNumeric(this String str)
+        {
+            foreach (char c in str)
+            {
+                if (!CompareToNumericAllowedChars(c))
+                    return false;
+            }
+            return true;
+        }
 
+        private static bool CompareToNumericAllowedChars(char c)
+        {
+            char[] allowedChars = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ',', '.', '-' };
+            byte failCount = 0;
+            foreach(char cc in allowedChars)
+            {
+                if (c != cc)
+                    failCount++;
+            }
+            if (failCount == 13)
+                return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Returns if the character at a given index is a digit
+        /// </summary>
+        /// <param name="index">The index of the character you want to check</param>
+        /// <returns></returns>
         public static bool IsDigit(this String str, int index)
         {
             int failCount = 0;
@@ -24,6 +57,10 @@ namespace UtilityRlib.StringHelper.NumericStringHelper
                 return true;
         }
 
+        /// <summary>
+        /// Returns a nice machine readble numeric string with absolute values and no decimal places after comma (no commas dots or dashes)
+        /// </summary>
+        /// <returns></returns>
         public static string AbsIntNumericFormatting(this String s)
         {
             s = NumericFormatting(s).Replace(",", "");
@@ -31,6 +68,10 @@ namespace UtilityRlib.StringHelper.NumericStringHelper
             return s;
         }
 
+        /// <summary>
+        /// Returns a nice machine readable numeric string.
+        /// </summary>
+        /// <returns></returns>
         public static string NumericFormatting(this String s)
         {
             char[] allowCh = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
