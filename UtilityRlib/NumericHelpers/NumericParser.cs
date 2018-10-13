@@ -51,6 +51,11 @@ namespace UtilityRlib.NumericHelpers
             return multiplier;
         }
 
+        public static int getAbsInt(string s)
+        {
+            return Math.Abs(getInt(s));
+        }
+
         /// <summary>
         /// Returns an integer, don't worry about cleaning the string, this function is meant for that.
         /// </summary>
